@@ -6,6 +6,9 @@ export default defineConfig({
   description: "Hope is more enduring than any suffering.",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    search: {
+      provider: "local",
+    },
     nav: [
       { text: "Home", link: "/" },
       { text: "Examples", link: "/Examples/markdown-examples" },
