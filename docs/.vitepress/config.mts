@@ -9,7 +9,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Examples", link: "/Examples/markdown-examples" },
-      { text: "200 Hots", link: "/200 Hots/index" },
+      { text: "200 Hots", link: "/200 Hots/001_路由守卫" },
     ],
 
     sidebar: {
@@ -25,7 +25,14 @@ export default defineConfig({
       "/200 Hots/": [
         {
           text: "200 Hots",
-          items: [{ text: "index", link: "/200 Hots/index" }],
+          items: [
+            { text: "路由守卫", link: "/200 Hots/001_路由守卫" },
+            {
+              text: "加载性能和渲染性能",
+              link: "/200 Hots/002_加载性能和渲染性能",
+            },
+            { text: "Node 循环机制", link: "/200 Hots/003_Node循环机制" },
+          ],
         },
       ],
     },
