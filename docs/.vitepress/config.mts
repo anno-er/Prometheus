@@ -35,6 +35,7 @@ export default defineConfig({
               link: "/200 Hots/002_加载性能和渲染性能",
             },
             { text: "Node 循环机制", link: "/200 Hots/003_Node循环机制" },
+            { text: "HTTP/HTTPS", link: "/200 Hots/004_HTTP" },
           ],
         },
       ],
