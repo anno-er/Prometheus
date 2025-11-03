@@ -36,6 +36,12 @@ export default defineConfig({
             },
             { text: "Node 循环机制", link: "/200 Hots/003_Node循环机制" },
             { text: "HTTP/HTTPS", link: "/200 Hots/004_HTTP" },
+            {
+              text: "Cookie、Session、Token",
+              link: "/200 Hots/005_Cookie、Session、Token",
+            },
+            { text: "原型模式与原型链", link: "/200 Hots/006_原型模式.md" },
+            { text: "设计模式", link: "/200 Hots/007_设计模式.md" },
           ],
         },
       ],
