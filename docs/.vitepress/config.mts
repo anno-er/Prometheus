@@ -46,6 +46,15 @@ export default defineConfig({
             { text: "DOCTYPE", link: "/200 Hots/009_DOCTYPE文档类型" },
             { text: "Meta", link: "/200 Hots/010_Meta标签" },
             { text: "HTML5", link: "/200 Hots/011_HTML5" },
+            { text: "Srcset", link: "/200 Hots/012_srcset" },
+            {
+              text: "Inline-Block-Empty",
+              link: "/200 Hots/013_inline-block-empty",
+            },
+            {
+              text: "Title & H1",
+              link: "/200 Hots/014_title-h1",
+            },
           ],
         },
       ],
