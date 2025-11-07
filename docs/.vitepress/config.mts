@@ -55,6 +55,26 @@ export default defineConfig({
               text: "Title & H1",
               link: "/200 Hots/014_title-h1",
             },
+            {
+              text: "Canvas & SVG",
+              link: "/200 Hots/015_canvas-svg",
+            },
+            {
+              text: "CSS选择器与优先级",
+              link: "/200 Hots/016_CSS选择器与优先级",
+            },
+            {
+              text: "CSS属性继承",
+              link: "/200 Hots/017_CSS属性继承",
+            },
+            {
+              text: "Display",
+              link: "/200 Hots/018_display",
+            },
+            {
+              text: "CSS link & @import",
+              link: "/200 Hots/019_link-@import",
+            },
           ],
         },
       ],
