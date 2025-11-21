@@ -75,6 +75,18 @@ export default defineConfig({
               text: "CSS link & @import",
               link: "/200 Hots/019_link-@import",
             },
+            {
+              text: "Transform",
+              link: "/200 Hots/020_transform",
+            },
+            {
+              text: "CSS Sprites",
+              link: "/200 Hots/021_Sprites",
+            },
+            {
+              text: "CSS 性能优化",
+              link: "/200 Hots/022_CSS性能优化",
+            },
           ],
         },
       ],

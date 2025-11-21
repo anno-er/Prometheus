@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FPS测量工具</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+      }
+      #fps-display {
+        font-size: 24px;
+        color: #333;
+        margin-top: 20px;
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      #fps-display.fade {
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>浏览器FPS实时监测</h1>
+    <div id="fps-display">正在计算FPS...</div>
+
+    <script>
+      let lastTime = performance.now();
+      let fpsCount = 0;
+      const fpsDisplay = document.getElementById("fps-display");
+
+      function measureFPS() {
+        fpsCount++;
+        const now = performance.now();
+        if (now - lastTime >= 1000) {
+          // 添加淡出效果
+          fpsDisplay.classList.add("fade");
+          const tmpCount = fpsCount;
+          // 在淡出完成后更新文本并淡入
+          setTimeout(() => {
+            fpsDisplay.textContent = `当前FPS: ${tmpCount}`;
+            fpsDisplay.classList.remove("fade");
+          }, 200);
+
+          fpsCount = 0;
+          lastTime = now;
+        }
+        requestAnimationFrame(measureFPS);
+      }
+
+      requestAnimationFrame(measureFPS);
+    </script>
+  </body>
+</html>
