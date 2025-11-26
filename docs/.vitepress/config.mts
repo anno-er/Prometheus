@@ -9,10 +9,15 @@ export default defineConfig({
     search: {
       provider: "local",
     },
+    outline: {
+      level: [2, 3], // 显示二级和三级标题
+      label: "目录", // 可选：自定义目录标题
+    },
     nav: [
       { text: "Home", link: "/" },
       { text: "Examples", link: "/Examples/markdown-examples" },
       { text: "200 Hots", link: "/200 Hots/001_路由守卫" },
+      { text: "TypeScript", link: "/Typescript/001_Basic" },
     ],
 
     sidebar: {
@@ -87,7 +92,17 @@ export default defineConfig({
               text: "CSS 性能优化",
               link: "/200 Hots/022_CSS性能优化",
             },
+            {
+              text: "完美视口",
+              link: "/200 Hots/023_完美视口",
+            },
           ],
+        },
+      ],
+      "/TypeScript/": [
+        {
+          text: "TypeScript",
+          items: [{ text: "Basic", link: "/TypeScript/001_Basic" }],
         },
       ],
     },
