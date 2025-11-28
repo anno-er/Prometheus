@@ -96,6 +96,10 @@ export default defineConfig({
               text: "完美视口",
               link: "/200 Hots/023_完美视口",
             },
+            {
+              text: "ES6 新特性",
+              link: "/200 Hots/024_ES6新特性",
+            },
           ],
         },
       ],
