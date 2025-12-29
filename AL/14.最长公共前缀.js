@@ -10,9 +10,9 @@
  * @return {string}
  */
 var longestCommonPrefix = function (strs) {
-  if (!strs || strs.length === 0) return "";
+  if (!strs || strs.length === 0) return '';
 
-  let result = "";
+  let result = '';
 
   for (let i = 0; i < 200; i++) {
     // 检查是否超出第一个字符串长度
@@ -29,4 +29,20 @@ var longestCommonPrefix = function (strs) {
     result += char;
   }
   return result;
+};
+
+var longestCommonPrefix = function (strs) {
+  if (!strs || strs.length == 0) return '';
+
+  let result = '';
+
+  for (let i = 0; i < strs[0].length; i++) {
+    const char = strs[0][i];
+    for (let j = 1; j < strs.length; j++) {
+      if (i > strs[j].length || strs[j][i] !== char) return result;
+    }
+    result += char;
+  }
+
+  return char;
 };
