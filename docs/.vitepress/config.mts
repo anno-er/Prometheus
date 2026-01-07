@@ -15,9 +15,10 @@ export default defineConfig({
     },
     nav: [
       { text: "Home", link: "/" },
-      { text: "Examples", link: "/Examples/markdown-examples" },
+      // { text: "Examples", link: "/Examples/markdown-examples" },
       { text: "200 Hots", link: "/200 Hots/001_路由守卫" },
       { text: "TypeScript", link: "/Typescript/001_Basic" },
+      { text: "Vue", link: "/Vue/001_Basic" },
     ],
 
     sidebar: {
@@ -107,6 +108,12 @@ export default defineConfig({
         {
           text: "TypeScript",
           items: [{ text: "Basic", link: "/TypeScript/001_Basic" }],
+        },
+      ],
+      "/Vue/": [
+        {
+          text: "Vue",
+          items: [{ text: "Basic", link: "/Vue/001_Basic" }],
         },
       ],
     },
