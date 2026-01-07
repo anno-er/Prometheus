@@ -101,6 +101,14 @@ export default defineConfig({
               text: "ES6 新特性",
               link: "/200 Hots/024_ES6新特性",
             },
+            {
+              text: "RequestAnimationFrame",
+              link: "/200 Hots/025_RequestAnimationFrame",
+            },
+            {
+              text: "WebWorker",
+              link: "/200 Hots/026_WebWorker",
+            },
           ],
         },
       ],
