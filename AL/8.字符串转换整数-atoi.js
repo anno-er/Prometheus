@@ -27,8 +27,8 @@ var myAtoi = function (s) {
   }
 
   //处理结果
-  while (i < s.length && s[i] > "0" && s[i] < "9") {
-    const digit = str[i] - "0";
+  while (i < s.length && s[i] >= "0" && s[i] <= "9") {
+    const digit = s[i] - "0";
 
     // 检查正数溢出
     if (
