@@ -10,7 +10,7 @@ function twoSum(arr, target) {
 }
 
 /* 三数之和：找出数组中所有和为 0 的不重复三元组 */
-function threeSum(nums, target) {
+function threeSum(nums) {
   let reuslt = [];
   nums.sort((a, b) => a - b > 0);
   for (let i = 0; i < nums.length - 2; i++) {
@@ -126,7 +126,6 @@ function validFigure(str) {
   }
   return figureStack.length === 0;
 }
-console.log('@@-->validFigure("(())")', validFigure("(())"));
 
 /* 字符串转换整数：实现 atoi */
 function myAtoi(s) {
@@ -160,3 +159,29 @@ function myAtoi(s) {
 
   return result * sign;
 }
+
+/* 两个数组中位数 - 合并数据排序，判断长度奇偶，取出中位数 */
+function middleNum(nums1, nums2) {
+  const lenght1 = nums1.length;
+  const length2 = nums2.length;
+  let p1 = 0;
+  let p2 = 0;
+  let total = lenght1 + length2;
+  let cur, pre;
+  for (let k = 0; k < Math.floor(total / 2); k++) {
+    pre = cur;
+    if (p1 < lenght1 && (p2 >= length2 || nums1[p1] < nums2[p2])) {
+      cur = nums1[p1++];
+    } else {
+      cur = nums2[p2++];
+    }
+  }
+  if (total % 2 === 0) {
+    return (cur + pre) / 2;
+  } else {
+    return cur;
+  }
+}
+
+/* 最长回文子串 */
+function longestPalindrome(str) {}
