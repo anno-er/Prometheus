@@ -115,7 +115,10 @@ export default defineConfig({
       "/TypeScript/": [
         {
           text: "TypeScript",
-          items: [{ text: "Basic", link: "/TypeScript/001_Basic" }],
+          items: [
+            { text: "Basic", link: "/TypeScript/001_Basic" },
+            { text: "Project", link: "/TypeScript/002_TypeScript工程化" },
+          ],
         },
       ],
       "/Vue/": [
