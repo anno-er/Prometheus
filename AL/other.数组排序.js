@@ -11,7 +11,8 @@ const bubbleSort = (arr) => {
     let sortedFlage = true;
     for (let j = 0; j < arr.length - i - 1; j++) {
       if (arr[j] > arr[j + 1]) {
-        sortedFlage = false[(arr[j], arr[j + 1])] = [arr[j + 1], arr[j]];
+        sortedFlage = false;
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
     }
     if (sortedFlage) {
@@ -44,7 +45,7 @@ const insertSort = (arr) => {
   if (arr.length <= 1) return arr;
 
   for (let i = 1; i < arr.length; i++) {
-    for (let j = i; j > 0; j++) {
+    for (let j = i; j > 0; j--) {
       if (arr[j] < arr[j - 1]) {
         [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
       } else {
@@ -55,3 +56,42 @@ const insertSort = (arr) => {
 
   return arr; // 建议添加返回语句，使函数行为更明确
 };
+
+/* 4. 快速排序 - 时间复杂度O(nlogn) 空间复杂度O(logn) 原理：通过一趟排序将待排序记录分隔成独立的两部分，其中一部分记录的关键字均比另一部分记录的关键字小，
+  则可分别对这两部分记录继续进行排序，以达到整个序列有序的目的 */
+function qucikSort(arr) {
+  if (arr.length <= 1) return arr;
+  let pivot = arr[0];
+  let left = [];
+  let right = [];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
+  }
+  return qucikSort(left).concat(pivot, qucikSort(right));
+}
+
+/* 5. 归并排序 - 时间复杂度O(nlogn) 空间复杂度O(n) 原理：将待排序序列递归地分成两半，分别对两半进行排序，然后将排序好的两半合并起来 */
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+  return merge(left, right);
+}
+function merge(left, right) {
+  let result = [];
+  let i = 0;
+  let j = 0;
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result.push(left[i++]);
+    } else {
+      result.push(right[j++]);
+    }
+  }
+  return result.concat(left.slice(i)).concat(right.slice(j));
+}

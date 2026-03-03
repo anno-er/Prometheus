@@ -84,7 +84,7 @@ function mergeSortedArr(nums1, nums2) {
 
 /* 反转字符串：原地反转字符数组 */
 function reverseStr(str) {
-  let strArr = str.split("");
+  let strArr = str.split('');
   let left = 0,
     right = strArr.length - 1;
   while (left < right) {
@@ -92,13 +92,13 @@ function reverseStr(str) {
     left++;
     right--;
   }
-  return strArr.join("");
+  return strArr.join('');
 }
 
 /* 最长公共前缀：查找字符串数组中的最长公共前缀 */
 function maxSamePrefix(strArr) {
-  if (!strs || strs.length == 0) return "";
-  let result = "";
+  if (!strs || strs.length == 0) return '';
+  let result = '';
   for (let i = 0; i < strArr[0].length; i++) {
     const char = strs[0][i];
     for (let j = 0; j < strArr.length; j++) {
@@ -112,7 +112,7 @@ function maxSamePrefix(strArr) {
 /* 有效的括号：判断括号字符串是否有效 -- '('，')'，'{'，'}'，'['，']' */
 function validFigure(str) {
   let stack = [];
-  let figureMap = new Map([[")", "("][("}", "{")][("]", "[")]]);
+  let figureMap = new Map([[')', '('][('}', '{')][(']', '[')]]);
   for (let i = 0; i < str.length; i++) {
     if (figureMap.has(str[i])) {
       if (stack.pop() !== figureMap.get(str[i])) return false;
@@ -133,16 +133,16 @@ function myAtoi(s) {
   const INT_MIN = -(2 ** 31);
 
   // 1. 跳过空格
-  while (i < str.length && s[i] === " ") i++;
+  while (i < str.length && s[i] === ' ') i++;
 
   //2. 设置符号
-  if (s[i] === "+" || s[i] === "-") {
-    sign = s[i] === "+" ? 1 : -1;
+  if (s[i] === '+' || s[i] === '-') {
+    sign = s[i] === '+' ? 1 : -1;
     i++;
   }
 
-  while (i < s.length && s[i] >= "0" && s[i] <= "9") {
-    const digit = s[i] - "0";
+  while (i < s.length && s[i] >= '0' && s[i] <= '9') {
+    const digit = s[i] - '0';
     if (
       result > INT_MAX / 10 ||
       (result === INT_MAX / 10 && digit > INT_MAX % 10)
@@ -294,4 +294,98 @@ function binarySearch(nums, target) {
   }
 
   return -1;
+}
+
+/* 排序： 冒泡排序 、选择排序 、插入排序 、快速排序 、归并排序 、堆排序 */
+function bubbleSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let sortFlag = true;
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        sortFlag = false;
+        [(arr[j], arr[j + 1])] = [arr[j + 1], arr[j]];
+      }
+    }
+    if (sortFlag) {
+      return arr
+    }
+  }
+  return arr
+}
+
+function selectSort(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    let minIndex = 0;
+    for (let j = i + 1; j < arr.length; j++) {
+      if(arr[minIndex] > arr[j]) {
+        minIndex = j
+      }
+      [arr[minIndex], arr[j]] = [arr[j], arr[minIndex]]
+    }
+  }
+}
+
+function insertSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    for (let j = i; j > 0; j--) {
+      if(arr[j] < arr[j - 1]) {
+        [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]]
+      } else {
+        break;
+      }
+    }
+  }
+} 
+
+
+function qucikSort(arr) {
+  if (arr.length <= 1) return arr
+
+  let left = []
+  let right = []
+  for(let i = 1; i < arr.length; i++) {
+    if (arr[i] < arr[0]) {
+      left.push(arr[i])
+    } else {
+      right.push(arr[i])
+    }
+  }
+  return qucikSort(left).concat(arr[0], qucikSort(right))
+}
+
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+  return merge(left, right);
+}
+function merge(left, right) {
+  let result = [];
+  let i = 0;
+  let j = 0;
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result.push(left[i++]);
+    } else {
+      result.push(right[j++]);
+    }
+  }
+  return result.concat(left.slice(i)).concat(right.slice(j));
+}
+
+/* 最大子数组和 */
+function maxSubArray(nums) {
+  let sum = 0
+  let max = 0
+
+  for(let i = 0; i < nums.length; i++) {
+    sum += nums[i]
+    max = Math.max(sum, max)
+    if (sum < 0) {
+      sum = 0
+    }
+  }
+
+  return max
 }
