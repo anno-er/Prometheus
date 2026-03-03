@@ -3,7 +3,7 @@ function twoSum(arr, target) {
   const map = new Map();
   for (let i = 0; i < arr.length; i++) {
     if (map.has(target - arr[i])) {
-      return [i, map.get(target - arr[i])];
+      return [target - arr[i], arr[i]];
     }
     map.set(arr[i], i);
   }
@@ -11,37 +11,40 @@ function twoSum(arr, target) {
 
 /* 三数之和：找出数组中所有和为 0 的不重复三元组 */
 function threeSum(nums) {
-  let reuslt = [];
+  let result = [];
   nums.sort((a, b) => a - b > 0);
   for (let i = 0; i < nums.length - 2; i++) {
-    let left = i + 1;
-    let right = nums.length - 1;
+    if (nums[i] > 0) break;
+    if (nums[i] == nums[i - 1]) continue;
+    let left = i + 1,
+      right = nums.length - 1;
     while (left < right) {
-      const total = nums[i] + nums[left] + nums[right];
-      if (total == 0) {
-        reuslt.push([nums[i], nums[left], nums[right]]);
-        // 跳过重复元素
-        while (left < right && nums[left] === nums[left + 1]) left++;
-        while (left < right && nums[right] === nums[right - 1]) right--;
-
+      let sum = nums[i] + nums[left] + nums[right];
+      if (sum == 0) {
+        result.push([nums[i], nums[left], nums[right]]);
         left++;
         right--;
-      } else if (total > 0) {
+      } else if (sum < 0) {
         right--;
       } else {
         left++;
       }
+
+      while (left < right && nums[left] == nums[left + 1]) left++;
+      while (left < right && nums[right] == nums[right + 1]) right--;
     }
   }
+
+  return result;
 }
 
 /* 移动零：将数组中的所有 0 移到数组末尾，同时保持非零元素的相对顺序 */
 function moveZero(nums) {
   let slow = 0;
-  let fast = 1;
+  let fast = 0;
   while (fast < nums.length) {
     if (nums[slow] === 0) {
-      while (nums[fast] === 0 && fast < nums.length) right++;
+      while (nums[fast] === 0 && fast < nums.length) fast++;
       [nums[slow], nums[fast]] = [nums[fast], nums[slow]];
     }
     slow++;
@@ -54,45 +57,42 @@ function moveItem(nums, target) {
   let slow = 0,
     fast = 0;
   while (fast < nums.length) {
-    while (nums[fast] === target && fast < nums.length) {
-      fast++;
-    }
+    while (nums[fast] === target && fast < nums.length) fast++;
     if (nums[slow] === target) {
-      nums[slow++] = nums[fast++];
+      [nums[slow], nums[fast]] = [nums[fast], nums[slow]];
     }
+    slow++;
+    fast++;
   }
-  return slow;
+  return nums.slice(0, slow);
 }
 
 /* 合并两个有序数组：将两个有序数组合并为一个有序数组 */
 function mergeSortedArr(nums1, nums2) {
-  let result = [];
   let i = 0,
     j = 0;
+  let result = [];
   while (i < nums1.length && j < nums2.length) {
     if (nums1[i] < nums2[j]) {
-      result.push(nums1[i]);
-      i++;
+      result.push[nums1[i++]];
     } else {
-      result.push(nums2[j]);
-      j++;
+      result.push[nums2[j++]];
     }
   }
-  // 拼接剩余的元素
-  return result.concat(nums1.slice(i)).concat(nums2.slice(j));
+  result.concat(nums1.slice(i).concat(nums2.slice(j)));
 }
 
 /* 反转字符串：原地反转字符数组 */
 function reverseStr(str) {
   let strArr = str.split("");
-  let left = 0;
-  let right = strArr.length - 1;
+  let left = 0,
+    right = strArr.length - 1;
   while (left < right) {
     [strArr[left], strArr[right]] = [strArr[right], strArr[left]];
     left++;
     right--;
   }
-  return strArr.join();
+  return strArr.join("");
 }
 
 /* 最长公共前缀：查找字符串数组中的最长公共前缀 */
@@ -111,20 +111,16 @@ function maxSamePrefix(strArr) {
 
 /* 有效的括号：判断括号字符串是否有效 -- '('，')'，'{'，'}'，'['，']' */
 function validFigure(str) {
-  const figureMap = new Map([
-    [")", "("],
-    ["]", "["],
-    ["}", "{"],
-  ]);
-  const figureStack = [];
+  let stack = [];
+  let figureMap = new Map([[")", "("][("}", "{")][("]", "[")]]);
   for (let i = 0; i < str.length; i++) {
-    if (!figureMap.has(str[i])) {
-      figureStack.push(str[i]);
+    if (figureMap.has(str[i])) {
+      if (stack.pop() !== figureMap.get(str[i])) return false;
     } else {
-      if (figureStack.pop() !== figureMap.get(str[i])) return false;
+      stack.push(str[i]);
     }
   }
-  return figureStack.length === 0;
+  return stack.length <= 0;
 }
 
 /* 字符串转换整数：实现 atoi */
@@ -184,4 +180,118 @@ function middleNum(nums1, nums2) {
 }
 
 /* 最长回文子串 */
-function longestPalindrome(str) {}
+function longestPalindrome(str) {
+  if (str.length <= 0) return str;
+
+  let calcPalindromeLength = (s, left, right) => {
+    while (s[left] === s[right] && left >= 0 && right < s.length) {
+      left--;
+      right++;
+    }
+    return right - left - 1;
+  };
+
+  let maxLen = 0;
+  let right = 0;
+  let left = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    let jiLen = calcPalindromeLength(str, i, i);
+    let ouLen = calcPalindromeLength(str, i, i + 1);
+    let len = Math.max(jiLen, ouLen);
+    if (len > maxLen) {
+      maxLen = len;
+      left = i - Math.floor((len - 1) / 2);
+      right = i + Math.floor(len / 2);
+    }
+  }
+
+  return str.substring(left, right + 1);
+}
+
+/* 盛水最多 */
+function maxWater(nums) {
+  let max = 0;
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left < right) {
+    let currentWater = Math.min(nums[left], nums[right]) * (right - left);
+    max = Math.max(max, currentWater);
+    if (nums[left] < nums[right]) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+}
+
+/* 最接近的三数之和 */
+function threeSumClosest(nums, target) {
+  let diff = Infinity;
+  nums.sort((a, b) => {
+    return a - b > 0;
+  });
+  let result;
+
+  for (let i = 0; i < nums.length - 2; i++) {
+    let left = i + 1;
+    let right = nums.length - 1;
+    while (left < right) {
+      let sum = nums[i] + nums[left] + nums[right];
+      let tempDiff = Math.abs(sum - target);
+      if (tempDiff === 0) return sum;
+      if (diff > tempDiff) {
+        diff = tempDiff;
+        result = sum;
+      }
+
+      if (sum < target) {
+        left++;
+      } else {
+        right--;
+      }
+    }
+  }
+  return result;
+}
+
+/* 删除有序数组中出现的重复项-快慢指针 */
+function deleteDuplicatedItem(nums) {
+  let slow = 0;
+  let fast = 1;
+
+  while (fast < nums.length) {
+    while (nums[fast] === nums[slow] && fast < nums.length) {
+      fast++;
+    }
+    nums[++slow] = nums[fast++];
+  }
+  return nums.slice(0, slow + 1);
+}
+
+/* 爬楼梯 */
+function climbStairs(n) {
+  if (n <= 2) return n;
+  else {
+    return climbStairs(n - 1) + climbStairs(n - 2);
+  }
+}
+
+/* 二分查找：在有序数组中查找目标值 */
+function binarySearch(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (nums[mid] === target) {
+      return mid;
+    } else if (nums[mid] < right) {
+      left = mid + 1;
+    } else {
+      right = mid;
+    }
+  }
+
+  return -1;
+}

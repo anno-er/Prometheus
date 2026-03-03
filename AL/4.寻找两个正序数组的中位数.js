@@ -75,7 +75,7 @@ var findMedianSortedArrays = function (nums1, nums2) {
   let last, current;
 
   let total = m + n;
-  for (let k = 0; k < total / 2; k++) {
+  for (let k = 0; k <= total / 2; k++) {
     last = current;
     if (i < m && (j >= n || nums1[i] < nums2[j])) {
       current = nums1[i++];
