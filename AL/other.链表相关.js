@@ -26,18 +26,22 @@ function reverseList(head) {
 
 /* 合并两个有序链表：将两个升序链表合并为一个新的升序链表 */
 function merrgeSortedList(head1, head2) {
-  let current = head1;
-  while (current !== null) {
-    if (current.val > head2.val) {
-      let next = current.next;
-      current.next = head2;
-      head2 = current;
-      current = next;
+  let dummy = new ListNode(0);
+  let tail = dummy;
+  let p1 = head1;
+  let p2 = head2;
+  while (p1 !== null && p2 !== null) {
+    if (p1.val <= p2.val) {
+      tail.next = p1;
+      p1 = p1.next;
     } else {
-      current = current.next;
+      tail.next = p2;
+      p2 = p2.next;
     }
+    tail = tail.next;
   }
-  return head1;
+  tail.next = p1 !== null ? p1 : p2;
+  return dummy.next;
 }
 
 /*  删除链表的倒数第 N 个节点：删除链表中倒数第 n 个节点 */

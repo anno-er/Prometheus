@@ -19,6 +19,7 @@ export default defineConfig({
       { text: "200 Hots", link: "/200 Hots/001_路由守卫" },
       { text: "TypeScript", link: "/Typescript/001_Basic" },
       { text: "Vue", link: "/Vue/001_Basic" },
+      { text: "三大件", link: "/Three/Html/001_Basic" },
     ],
 
     sidebar: {
@@ -129,6 +130,23 @@ export default defineConfig({
             { text: "Pinia", link: "/Vue/003_Pinia" },
             { text: "Vuex", link: "/Vue/004_Vuex" },
             { text: "Vue 进阶", link: "/Vue/005_Vue%E8%BF%9B%E9%98%B6" },
+          ],
+        },
+      ],
+      "/Three/": [
+        {
+          text: "基础",
+          items: [
+            { text: "HTML", link: "/Three/Html/001_Basic" },
+            { text: "CSS", link: "/Three/CSS/001_Basic" },
+            { text: "Javascript", link: "/Three/Javascript/001_Basic" },
+          ],
+        },
+        {
+          text: "进阶",
+          items: [
+            { text: "Less", link: "/Three/CSS/002_Less" },
+            { text: "Sass", link: "/Three/CSS/003_Sass" },
           ],
         },
       ],
