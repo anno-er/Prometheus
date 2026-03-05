@@ -127,9 +127,10 @@ export default defineConfig({
           text: "Vue",
           items: [
             { text: "Basic", link: "/Vue/001_Basic" },
+            { text: "Vue 进阶", link: "/Vue/005_VuePro" },
+            { text: "Vue Router", link: "/Vue/002_VueRouter" },
             { text: "Pinia", link: "/Vue/003_Pinia" },
             { text: "Vuex", link: "/Vue/004_Vuex" },
-            { text: "Vue 进阶", link: "/Vue/005_Vue%E8%BF%9B%E9%98%B6" },
           ],
         },
       ],
