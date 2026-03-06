@@ -17,8 +17,9 @@ export default defineConfig({
       { text: "Home", link: "/" },
       // { text: "Examples", link: "/Examples/markdown-examples" },
       { text: "200 Hots", link: "/200 Hots/001_路由守卫" },
-      { text: "Vue", link: "/Vue/001_Basic" },
       { text: "基础", link: "/Basic/Html/001_Basic" },
+      { text: "Vue", link: "/Vue/001_Basic" },
+      { text: "Node", link: "/Node/001_Basic" },
     ],
 
     sidebar: {
@@ -146,6 +147,12 @@ export default defineConfig({
             { text: "Basic", link: "/Basic/TypeScript/001_Basic" },
             { text: "Project", link: "/Basic/TypeScript/002_TypeScript工程化" },
           ],
+        },
+      ],
+      "/Node/": [
+        {
+          text: "Node",
+          items: [{ text: "Basic", link: "/Node/001_Basic" }],
         },
       ],
     },
