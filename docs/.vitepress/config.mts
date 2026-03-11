@@ -4,6 +4,12 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'PROMETHEUS',
   description: 'Hope is more enduring than any suffering.',
+  vite: {
+    server: {
+      port: 3000,
+      strictPort: false,
+    },
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {
@@ -164,6 +170,10 @@ export default defineConfig({
             { text: 'Webpack', link: '/Project/002_webpack' },
             { text: 'Vite', link: '/Project/003_vite' },
           ],
+        },
+        {
+          text: "框架",
+          items: [{ text: "Koa", link: "/Node/003_Koa" }],
         },
       ],
     },
