@@ -165,6 +165,10 @@ export default defineConfig({
           text: 'Node',
           items: [{ text: 'Basic', link: '/Node/001_Basic' }],
         },
+        {
+          text: '框架',
+          items: [{ text: 'Koa', link: '/Node/003_Koa' }],
+        },
       ],
       '/Project/': [
         {
@@ -176,8 +180,10 @@ export default defineConfig({
           ],
         },
         {
-          text: "框架",
-          items: [{ text: "Koa", link: "/Node/003_Koa" }],
+          text: '乾坤框架',
+          items: [
+            { text: '乾坤框架', link: '/Project/004_QianKun' },
+          ],
         },
       ],
     },
