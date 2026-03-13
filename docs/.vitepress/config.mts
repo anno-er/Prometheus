@@ -24,7 +24,7 @@ export default defineConfig({
       // { text: "Examples", link: "/Examples/markdown-examples" },
       { text: '200 Hots', link: '/200 Hots/001_路由守卫' },
       { text: '基础', link: '/Basic/Html/001_Basic' },
-      { text: 'Vue', link: '/Vue/001_Basic' },
+      { text: '技术栈', link: '/Frame Stack/Vue/001_Basic' },
       { text: 'Node', link: '/Node/001_Basic' },
       { text: '工程化', link: '/Project/001_Basic' },
     ],
@@ -120,19 +120,23 @@ export default defineConfig({
           ],
         },
       ],
-      '/Vue/': [
+      '/Frame Stack/': [
         {
           text: 'Vue',
           items: [
-            { text: 'Basic', link: '/Vue/001_Basic' },
-            { text: 'Vue 进阶', link: '/Vue/005_VuePro' },
-            { text: 'Vue Router', link: '/Vue/002_VueRouter' },
-            { text: 'Pinia', link: '/Vue/003_Pinia' },
-            { text: 'Vuex', link: '/Vue/004_Vuex' },
+            { text: 'Basic', link: '/Frame Stack/Vue/001_Basic' },
+            { text: 'Vue 进阶', link: '/Frame Stack/Vue/005_VuePro' },
+            { text: 'Vue Router', link: '/Frame Stack/Vue/002_VueRouter' },
+            { text: 'Pinia', link: '/Frame Stack/Vue/003_Pinia' },
+            { text: 'Vuex', link: '/Frame Stack/Vue/004_Vuex' },
           ],
         },
+        {
+          text: 'uniApp',
+          items: [{ text: 'Basic', link: '/Frame Stack/uniApp/001_Basic' }],
+        },
       ],
-      'Basic/': [
+      '/Basic/': [
         {
           text: 'HTML',
           items: [
