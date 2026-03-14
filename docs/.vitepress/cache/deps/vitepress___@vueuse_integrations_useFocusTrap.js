@@ -3,13 +3,13 @@ import {
   toArray,
   tryOnScopeDispose,
   unrefElement
-} from "./chunk-MEB23ZEO.js";
+} from "./chunk-OV36UNJN.js";
 import {
   computed,
   shallowRef,
   toValue,
   watch
-} from "./chunk-T7UXJZET.js";
+} from "./chunk-JAPIL3UL.js";
 
 // node_modules/tabbable/dist/index.esm.js
 var candidateSelectors = ["input:not([inert])", "select:not([inert])", "textarea:not([inert])", "a[href]:not([inert])", "button:not([inert])", "[tabindex]:not(slot):not([inert])", "audio[controls]:not([inert])", "video[controls]:not([inert])", '[contenteditable]:not([contenteditable="false"]):not([inert])', "details>summary:first-of-type:not([inert])", "details:not([inert])"];
@@ -1156,4 +1156,18 @@ function useFocusTrap(target, options = {}) {
 export {
   useFocusTrap
 };
+/*! Bundled license information:
+
+tabbable/dist/index.esm.js:
+  (*!
+  * tabbable 6.3.0
+  * @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
+  *)
+
+focus-trap/dist/focus-trap.esm.js:
+  (*!
+  * focus-trap 7.6.6
+  * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
+  *)
+*/
 //# sourceMappingURL=vitepress___@vueuse_integrations_useFocusTrap.js.map

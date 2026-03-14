@@ -157,6 +157,7 @@ export default defineConfig({
           items: [
             { text: 'Basic', link: '/Basic/TypeScript/001_Basic' },
             { text: 'Project', link: '/Basic/TypeScript/002_TypeScript工程化' },
+            { text: '常见面试题', link: '/Basic/TypeScript/003_常见面试题' },
           ],
         },
       ],
@@ -181,9 +182,7 @@ export default defineConfig({
         },
         {
           text: '乾坤框架',
-          items: [
-            { text: '乾坤框架', link: '/Project/004_QianKun' },
-          ],
+          items: [{ text: '乾坤框架', link: '/Project/004_QianKun' }],
         },
       ],
     },
