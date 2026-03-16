@@ -284,3 +284,110 @@ Tree-shaking 指的是在打包过程中“摇掉”未被引用的代码。
 3.  **异步错误处理**：在 API 请求中使用 `try...catch`。
 4.  **网络层拦截**：通过 Axios 响应拦截器统一处理 401、500 等状态码。
 5.  **上报系统**：集成 Sentry 或自建日志系统，利用 `navigator.sendBeacon` 发送错误日志。
+
+## 28. keepAlive 的作用与原理
+
+`<keep-alive>` 是 Vue 的内置组件，用于缓存不活动的组件实例，避免重复渲染，提升性能。
+
+**核心特性：**
+
+1.  **组件缓存**：被包裹的组件在切换时不会被销毁，而是被缓存起来，再次激活时直接复用。
+2.  **专属生命周期**：
+    - `activated`：组件被激活时调用
+    - `deactivated`：组件被停用时调用
+3.  **属性配置**：
+    - `include`：匹配的组件会被缓存（字符串、正则、数组）
+    - `exclude`：匹配的组件不会被缓存
+    - `max`：最多缓存多少组件实例（LRU 策略）
+
+**基本用法：**
+
+```vue
+<template>
+  <keep-alive include="Home,About" :max="10">
+    <component :is="currentComponent" />
+  </keep-alive>
+</template>
+
+<script setup>
+import { ref } from "vue";
+import Home from "./Home.vue";
+import About from "./About.vue";
+
+const currentComponent = ref(Home);
+</script>
+```
+
+**配合路由使用：**
+
+```vue
+<template>
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
+</template>
+```
+
+**实现原理：**
+
+1.  **缓存机制**：`keep-alive` 内部维护一个 `cache` 对象和一个 `keys` 数组，分别存储缓存的组件实例和对应的 key。
+2.  **渲染控制**：在 `render` 函数中，通过检查 `include` 和 `exclude` 判断是否需要缓存。
+3.  **LRU 策略**：当缓存数量超过 `max` 时，使用最近最少使用算法淘汰最久未访问的组件。
+4.  **生命周期管理**：通过 `shapeFlag` 标记组件为 `KEEP_ALIVE`，在组件卸载时调用 `deactivate`，激活时调用 `activate`。
+
+**核心源码简化：**
+
+```javascript
+const KeepAlive = {
+  name: "KeepAlive",
+  setup(props, { slots }) {
+    const cache = new Map();
+    const keys = new Set();
+
+    let current = null;
+
+    function pruneCacheEntry(key) {
+      const cached = cache.get(key);
+      if (cached) {
+        cached.component?.unmount();
+        cache.delete(key);
+        keys.delete(key);
+      }
+    }
+
+    return () => {
+      const vnode = slots.default()[0];
+
+      if (cache.has(vnode.type)) {
+        const cached = cache.get(vnode.type);
+        cached.component?.update();
+      } else {
+        cache.set(vnode.type, vnode);
+        keys.add(vnode.type);
+
+        if (props.max && keys.size > props.max) {
+          pruneCacheEntry(keys.values().next().value);
+        }
+      }
+
+      return vnode;
+    };
+  },
+};
+```
+
+**适用场景：**
+
+1.  **表单页面**：用户填写到一半切换页面，返回时保留填写内容。
+2.  **列表详情页**：从详情页返回列表页时保留滚动位置和筛选条件。
+3.  **Tab 切换**：多个 Tab 页面频繁切换时保持各页面状态。
+4.  **性能优化**：避免重复渲染复杂组件，减少 HTTP 请求。
+
+**注意事项：**
+
+1.  **内存占用**：缓存过多组件会增加内存消耗，需合理设置 `max`。
+2.  **数据更新**：缓存组件的数据不会自动更新，需在 `activated` 中手动刷新。
+3.  **生命周期**：`created` 和 `mounted` 只执行一次，数据初始化逻辑需考虑缓存场景。
+4.  **嵌套限制**：`keep-alive` 要求只有一个子组件，不能与 `v-for` 一起使用。

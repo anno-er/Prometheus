@@ -170,6 +170,10 @@ export default defineConfig({
           text: '框架',
           items: [{ text: 'Koa', link: '/Node/003_Koa' }],
         },
+        {
+          text: '数据库',
+          items: [{ text: 'MongoDB & Mongoose', link: '/Node/004_MongoDB_Mongoose' }],
+        },
       ],
       '/Project/': [
         {
