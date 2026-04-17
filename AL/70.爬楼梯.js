@@ -18,16 +18,36 @@ function climbStairs(n) {
 var climbStairs = function (n) {
   if (n <= 2) return n;
 
-  // 使用动态规划优化解法
-  let prev2 = 1; // 到达第1阶的方法数
-  let prev1 = 2; // 到达第2阶的方法数
+  let prev2 = 1;
+  let prev1 = 2;
 
   for (let i = 3; i <= n; i++) {
-    let current = prev1 + prev2; // 到达第i阶的方法数
+    let current = prev1 + prev2;
     prev2 = prev1;
     prev1 = current;
   }
 
   return prev1;
+};
+
+/**
+ * 一次可以爬1到n层，问爬到第n层有多少种方法
+ * @param {number} n - 楼梯总层数
+ * @return {number}
+ */
+var climbStairsAny = function (n) {
+  if (n === 0) return 1;
+  if (n === 1) return 1;
+
+  let dp = new Array(n + 1).fill(0);
+  dp[0] = 1;
+
+  for (let i = 1; i <= n; i++) {
+    for (let j = 0; j < i; j++) {
+      dp[i] += dp[j];
+    }
+  }
+
+  return dp[n];
 };
 // @lc code=end
